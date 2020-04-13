@@ -10,11 +10,11 @@
 #include <ESP8266HTTPClient.h>
 #include <Ticker.h>
 
-#define DEVICE_ID "UVKY765HR848JGNM"
-#define DEVICE_DATA  "#22,1#"
+#define DEVICE_ID "V36625K243D8ROR1"
+#define DEVICE_DATA  "#25,1#"
 
-char* ssid = "sand";
-char* passwd = "12345678";
+char* ssid = "lxy2305";
+char* passwd = "123456789a";
 
 const uint16_t port = 8647;
 const char * host = "tcp.tlink.io"; // ip or dns
@@ -62,7 +62,7 @@ void setup() {
         delay(500);
         client.print(DEVICE_DATA);
          // call time_coming_cicyle_cb every 30s
-         tk.attach(30, time_coming_cicyle_cb);
+         tk.attach(5, time_coming_cicyle_cb);
     }
 }
  
@@ -71,9 +71,6 @@ void loop() {
     if (1 == heartbeart_flag)
     {
       client.print("Q");
-      String recv_heart_data= client.readString();
-      Serial.print("Receive heartbeat data : ");
-      Serial.println(recv_heart_data);
       heartbeart_flag = 0;
     }
     
@@ -83,5 +80,5 @@ void loop() {
       Serial.print("Receive data : ");
       Serial.println(recv_data);
     }
-    delay(200);
+    delay(20);
 }
